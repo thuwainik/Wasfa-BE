@@ -3,8 +3,6 @@ const app = express();
 const errorHandler = require("./middleware/erroHandler");
 const notFoundHandler = require("./middleware/notFoundHandler");
 const connectDB = require("./database");
-require("dotenv").config();
-const port = process.env.PORT;
 const morgan = require("morgan");
 const cors = require("cors");
 const userRouter = require("./api/user/user.routes");
@@ -26,6 +24,6 @@ app.route("/api/ingredient", IngredientRouter);
 app.use(errorHandler);
 app.use(notFoundHandler);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is listening to Port " + port);
 });
