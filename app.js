@@ -25,5 +25,5 @@ app.use(errorHandler);
 app.use(notFoundHandler);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is listening to Port " + port);
+  console.log("Server is listening to Port " + process.env.PORT);
 });
