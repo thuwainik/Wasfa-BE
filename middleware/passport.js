@@ -6,10 +6,13 @@ const bcrypt = require("bcrypt");
 
 const localStrategy = new LocalStrategy(
   // Check username and password in the database and return the user if it matches
-  { usernameField: "email" },
+  { usernameField: "username" },
   async (username, password, done) => {
     try {
-      const user = await User.findOne({ username: username });
+      const user = await User.findOne({
+        // this lets user to authenticate using either email or username
+        $or: [{ username: username }, { email: username }],
+      });
       if (!user) return { message: "Username or Password are not found" };
       const passwordsMatch = await bcrypt.compare(password, user.password);
       if (!passwordsMatch) return done(null, false);
