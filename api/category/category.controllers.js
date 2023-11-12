@@ -3,7 +3,7 @@ const Recipe = require("../../models/Recipe");
 
 exports.getAllcategories = async (req, res, next) => {
   try {
-    const categories = Category.find().populate();
+    const categories = await Category.find().pop;
     res.status(201).json(categories);
   } catch (error) {
     next(error);
