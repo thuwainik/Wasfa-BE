@@ -19,7 +19,7 @@ const RecipeSchema = new Schema({
       qty: Number,
     },
   ],
-  category: { type: Schema.Types.ObjectId, ref: "Category" },
+  category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
 });
 
 module.exports = model("Recipe", RecipeSchema);
